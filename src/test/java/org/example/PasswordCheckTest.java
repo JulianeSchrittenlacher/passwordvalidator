@@ -130,6 +130,12 @@ class PasswordCheckTest {
         boolean actual = PasswordCheck.containsThreeConsecutiveDigits(password);
         assertTrue(actual);
     }
+    @Test
+    void ContainsThreeConsecutiveDigits_returnFalse_whenContainswfgklfkg321() {
+        String password = "awfgklfkg321";
+        boolean actual = PasswordCheck.checkPasswordsCommonlyUsed(password, commonPasswords);
+        assertFalse(actual);
+    }
 
 
 

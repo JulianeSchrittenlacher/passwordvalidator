@@ -53,9 +53,9 @@ public class PasswordCheck {
         } else if (password.toLowerCase().contains("passwort")) {
             return false;
         }
-//        else if () {
-//            return false;
-//        }
+        else if (containsThreeConsecutiveDigits(password)) {
+            return false;
+        }
 
         return true;
 
