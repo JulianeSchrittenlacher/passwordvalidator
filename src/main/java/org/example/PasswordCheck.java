@@ -32,9 +32,14 @@ public class PasswordCheck {
         return false;
     }
 
-//
-//    public static boolean checkPasswordsCommonlyUsed(String password, String [] commonPasswords) {
-//        boolean result = true;
-//
-//    }
+
+    public static boolean checkPasswordsCommonlyUsed(String password, String [] commonPasswords) {
+        for (String commonPassword : commonPasswords) {
+            if (commonPassword.equals(password)) {
+                return false;
+            }
+        }
+        return true;
+
+    }
 }

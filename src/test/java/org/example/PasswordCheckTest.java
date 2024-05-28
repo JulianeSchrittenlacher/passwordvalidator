@@ -81,18 +81,20 @@ class PasswordCheckTest {
         boolean actual = PasswordCheck.checkPasswordCases(password);
         assertFalse(actual);
     }
-//    @Test
-//    void CheckPasswordsCommonlyUsed_returnFalse_whenIs12345678() {
-//        String password = "Password1";
-//        boolean actual = PasswordCheck.checkPasswordsCommonlyUsed(password, commonPasswords);
-//        assertFalse(actual);
-//    }
-//    @Test
-//    void CheckPasswordsCommonlyUsed_returnTrue_whenGoodExample() {
-//        String password = "hJ!5zLw9*pDq";
-//        boolean actual = PasswordCheck.checkPasswordsCommonlyUsed(password, commonPasswords);
-//        assertTrue(actual);
-//    }
+    @Test
+    void CheckPasswordsCommonlyUsed_returnFalse_whenIs12345678() {
+        String password = "Aa345678";
+        boolean actual = PasswordCheck.checkPasswordsCommonlyUsed(password, commonPasswords);
+        assertFalse(actual);
+    }
+    @Test
+    void CheckPasswordsCommonlyUsed_returnTrue_whenGoodExample() {
+        String password = "hJ!5zLw9*pDq";
+        boolean actual = PasswordCheck.checkPasswordsCommonlyUsed(password, commonPasswords);
+        assertTrue(actual);
+    }
+
+
 
 
     }
