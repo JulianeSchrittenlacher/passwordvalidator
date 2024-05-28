@@ -5,9 +5,8 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class PasswordCheckTest {
-    String[] commonPasswords = {"Password1", "Aa345678", "Password3"};
 
-    @Test
+        @Test
     void IsPasswordLengthValid_returnFalse_whenLengthIsLessThan8() {
         String password = "short";
         boolean actual = PasswordCheck.isPasswordLengthValid(password);
@@ -81,6 +80,8 @@ class PasswordCheckTest {
         boolean actual = PasswordCheck.checkPasswordCases(password);
         assertFalse(actual);
     }
+
+    String[] commonPasswords = {"Password1", "Aa345678", "Password3"};
     @Test
     void CheckPasswordsCommonlyUsed_returnFalse_whenIs12345678() {
         String password = "Aa345678";
@@ -91,6 +92,42 @@ class PasswordCheckTest {
     void CheckPasswordsCommonlyUsed_returnTrue_whenGoodExample() {
         String password = "hJ!5zLw9*pDq";
         boolean actual = PasswordCheck.checkPasswordsCommonlyUsed(password, commonPasswords);
+        assertTrue(actual);
+    }
+    @Test
+    void CheckPasswordsCommonlyUsed_returnFalse_whenContainsPassword() {
+        String password = "Password2";
+        boolean actual = PasswordCheck.checkPasswordsCommonlyUsed(password, commonPasswords);
+        assertFalse(actual);
+    }
+    @Test
+    void CheckPasswordsCommonlyUsed_returnFalse_whenContains_password() {
+        String password = "passWord2";
+        boolean actual = PasswordCheck.checkPasswordsCommonlyUsed(password, commonPasswords);
+        assertFalse(actual);
+    }
+    @Test
+    void CheckPasswordsCommonlyUsed_returnFalse_whenContainsPasswort() {
+        String password = "Passwort";
+        boolean actual = PasswordCheck.checkPasswordsCommonlyUsed(password, commonPasswords);
+        assertFalse(actual);
+    }
+    @Test
+    void CheckPasswordsCommonlyUsed_returnFalse_whenContainsThreeConsecutiveDigits() {
+        String password = "12345";
+        boolean actual = PasswordCheck.checkPasswordsCommonlyUsed(password, commonPasswords);
+        assertFalse(actual);
+    }
+    @Test
+    void ContainsThreeConsecutiveDigits_returnFalse_whenContains12345() {
+        String password = "12345";
+        boolean actual = PasswordCheck.containsThreeConsecutiveDigits(password);
+        assertFalse(actual);
+    }
+    @Test
+    void ContainsThreeConsecutiveDigits_returnTrue_whenDoesNotContainConsecutiveDigits() {
+        String password = "awfgklfkg321";
+        boolean actual = PasswordCheck.containsThreeConsecutiveDigits(password);
         assertTrue(actual);
     }
 

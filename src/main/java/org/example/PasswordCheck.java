@@ -1,4 +1,7 @@
 package org.example;
+import java.util.regex.Pattern;
+import java.util.regex.Matcher;
+
 
 public class PasswordCheck {
 
@@ -33,13 +36,34 @@ public class PasswordCheck {
     }
 
 
+
+
     public static boolean checkPasswordsCommonlyUsed(String password, String [] commonPasswords) {
+
         for (String commonPassword : commonPasswords) {
             if (commonPassword.equals(password)) {
                 return false;
             }
         }
+
+        if (password.contains("Password")) {
+            return false;
+        } else if (password.toLowerCase().contains("password")) {
+            return false;
+        } else if (password.toLowerCase().contains("passwort")) {
+            return false;
+        }
+//        else if () {
+//            return false;
+//        }
+
         return true;
 
+    }
+
+    public static boolean containsThreeConsecutiveDigits(String password) {
+        Pattern pattern = Pattern.compile("\\d{3}");
+        Matcher matcher = pattern.matcher(password);
+        return matcher.find();
     }
 }
