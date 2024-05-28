@@ -52,17 +52,21 @@ public class PasswordCheck {
             return false;
         } else if (password.toLowerCase().contains("passwort")) {
             return false;
-        }
-        else if (containsThreeConsecutiveDigits(password)) {
+        } else if (containsThreeConsecutiveDigits(password)) {
             return false;
         }
-
         return true;
 
     }
 
     public static boolean containsThreeConsecutiveDigits(String password) {
         Pattern pattern = Pattern.compile("\\d{3}");
+        Matcher matcher = pattern.matcher(password);
+        return matcher.find();
+    }
+
+    public static boolean containsSpecialCharacters(String password) {
+        Pattern pattern = Pattern.compile("[^a-zA-Z0-9]");
         Matcher matcher = pattern.matcher(password);
         return matcher.find();
     }

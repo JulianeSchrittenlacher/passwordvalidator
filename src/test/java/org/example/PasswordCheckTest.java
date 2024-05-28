@@ -2,6 +2,7 @@ package org.example;
 
 import org.junit.jupiter.api.Test;
 
+import static org.example.PasswordCheck.containsSpecialCharacters;
 import static org.junit.jupiter.api.Assertions.*;
 
 class PasswordCheckTest {
@@ -119,10 +120,10 @@ class PasswordCheckTest {
         assertFalse(actual);
     }
     @Test
-    void ContainsThreeConsecutiveDigits_returnFalse_whenContains12345() {
+    void ContainsThreeConsecutiveDigits_returnTrue_whenContains12345() {
         String password = "12345";
         boolean actual = PasswordCheck.containsThreeConsecutiveDigits(password);
-        assertFalse(actual);
+        assertTrue(actual);
     }
     @Test
     void ContainsThreeConsecutiveDigits_returnTrue_whenDoesNotContainConsecutiveDigits() {
@@ -136,6 +137,23 @@ class PasswordCheckTest {
         boolean actual = PasswordCheck.checkPasswordsCommonlyUsed(password, commonPasswords);
         assertFalse(actual);
     }
+
+    //Tests for special Characters
+
+    @Test
+    void ContainsSpecialCharacters_returnTrue_whenContainsSpecialCharacters() {
+        String password = "?))";
+        boolean actual = containsSpecialCharacters(password);
+        assertTrue(actual);
+    }
+    @Test
+    void ContainsSpecialCharacters_returnFalse_whenDoesNotContainSpecialCharacters() {
+        String password = "ajjj";
+        boolean actual = containsSpecialCharacters(password);
+        assertFalse(actual);
+    }
+
+
 
 
 
